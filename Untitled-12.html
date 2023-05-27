@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback-Seite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Feedback-Seite</h1>
+  </header>
+  
+  <section id="feedback-form">
+    <h2>Geben Sie Ihr Feedback ab</h2>
+    <form id="feedbackForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">E-Mail:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="message">Feedback:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      
+      <button type="submit">Senden</button>
+    </form>
+  </section>
+  
+  <section id="feedback-list">
+    <h2>Feedback von anderen Benutzern</h2>
+    <ul id="feedbackList"></ul>
+  </section>
+  
+  <script src="script.js"></script>
+  <script> 
+  // Feedback-Formular absenden
+document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Verhindert das automatische Absenden des Formulars
+
+  // Feedback-Daten erfassen
+  var name = document.getElementById('name').value;
+  var email = document.getElementById('email').value;
+  var message = document.getElementById('message').value;
+
+  // Feedback in Liste anzeigen
+  var feedbackItem = document.createElement('li');
+  feedbackItem.innerHTML = '<strong>' + name + ':</strong> ' + message;
+  document.getElementById('feedbackList').appendChild(feedbackItem);
+
+  // Feedback-Formular leeren
+  document.getElementById('name').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('message').value = '';
+
+  // Bestätigungsnachricht anzeigen
+  alert('Vielen Dank für Ihr Feedback!');
+});
+
+  </script>
+  <style>
+    /* Allgemeines Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+/* Header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Feedback-Formular */
+#feedback-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Feedback-Liste */
+#feedback-list {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+}
+
+#feedback-list h2 {
+  margin-bottom: 10px;
+}
+
+#feedbackList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#feedbackList li {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+#feedbackList li:last-child {
+  border-bottom: none;
+}
+
+  </style>
+</body>
+</html>
